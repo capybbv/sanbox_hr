@@ -1,0 +1,93 @@
+
+application {
+  config {
+    baseName sandbox2
+    applicationType monolith
+    packageName ortg.ssandwich
+    authenticationType jwt
+    databaseType sql
+    prodDatabaseType postgresql
+    devDatabaseType h2Memory
+    clientFramework angular
+    buildTool maven
+    cacheProvider ehcache
+    languages [en, vi]
+    nativeLanguage [en]
+    searchEngine elasticsearch
+    serverPort 8080
+    testFrameworks [gatling]
+  }
+  entities *
+  // service * with serviceImpl
+  // dto * with mapstruct
+}
+
+entity Region {
+	RegionId Integer required unique
+    RegionName String
+}
+
+entity Countries {
+	CountryId String minlength(2) maxlength(2) required unique
+    CountryName String 
+}
+
+entity Locations{
+	LocationId Integer required unique
+    StreetAddress String maxlength(40)
+    PostalCode String maxlength(12)
+    City String maxlength(30)
+    StateProvince String maxlength(25)
+}
+
+entity Jobs{
+	JobId Integer required unique
+    JobTitle String required maxlength(35)
+    MinSalary Integer
+    MaxSalary Integer
+}
+
+entity Departments{
+	DepartmentId Integer required unique
+    DepartmentName String maxlength(30)
+}
+
+entity Employees{
+	EmployeeId Integer required unique
+    FirstName String maxlength(20) 
+    LastName String maxlength(25) required
+    Email String maxlength(25) required unique
+    PhoneNumber String maxlength(20)
+    HireDate ZonedDateTime required
+    Salary Integer
+    CommissionPct Integer
+}
+
+entity JobHistory{
+	EmployId Integer required unique
+    StartDate ZonedDateTime required unique
+    EndDate ZonedDateTime required
+}
+
+relationship OneToMany {
+	Region to @OnDelete("No Action") Countries{CountrRegFk(RegionId)}
+    Countries to @OnDelete("No Action") Locations{LocCIdFk(CountryId)}
+    Locations to @OnDelete("No Action") Departments{DeptLocFk(LocationId)}
+    
+	Employees to @OnDelete("No Action") Employees{EmpManagerFk(ManagerId)}
+	Employees to @OnDelete("No Action") Departments{DepMgr(DepartmentId)}
+    
+    Departments to @OnDelete("No Action") Employees{EmpDeptFk(DepartmentId)}
+    Jobs to @OnDelete("No Action") Employees{EmpJobFk(JobId)}
+    Departments to @OnDelete("No Action") JobHistory{JhistDepFk(DepartmentId)}
+    Jobs to @OnDelete("No Action") JobHistory{JhistJob(JobId)}
+}
+
+use mapstruct, serviceImpl, pagination for *
+search JobHistory, Employees with elasticsearch
+
+
+
+
+
+
