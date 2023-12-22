@@ -1,0 +1,37 @@
+{
+  "sanbox2App": {
+    "employees": {
+      "home": {
+        "title": "Employees",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Thêm mới một Employees",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Employees",
+        "search": "Tìm Employees",
+        "notFound": "No Employees found"
+      },
+      "created": "Một Employees mới được tạo với định danh {{ param }}",
+      "updated": "Một Employees cập nhật với định danh {{ param }}",
+      "deleted": "Một Employees đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Employees {{ id }}?"
+      },
+      "detail": {
+        "title": "Employees"
+      },
+      "id": "ID",
+      "employeeId": "Employee Id",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phoneNumber": "Phone Number",
+      "hireDate": "Hire Date",
+      "salary": "Salary",
+      "commissionPct": "Commission Pct",
+      "employees": "Employees",
+      "departments": "Departments",
+      "empManagerFk": "Emp Manager Fk",
+      "empDeptFk": "Emp Dept Fk",
+      "empJobFk": "Emp Job Fk"
+    }
+  }
+}

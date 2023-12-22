@@ -1,0 +1,50 @@
+{
+  "annotations": {
+    "changelogDate": "20231222043112"
+  },
+  "applications": "*",
+  "entityTableName": "job_history",
+  "fields": [
+    {
+      "fieldName": "employId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "JobHistory",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "options": {
+        "onDelete": "No Action"
+      },
+      "otherEntityField": "departmentId",
+      "otherEntityName": "departments",
+      "relationshipName": "jhistDepFk",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "options": {
+        "onDelete": "No Action"
+      },
+      "otherEntityField": "jobId",
+      "otherEntityName": "jobs",
+      "relationshipName": "jhistJob",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "elasticsearch",
+  "service": "serviceImpl"
+}

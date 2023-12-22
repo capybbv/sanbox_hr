@@ -1,0 +1,60 @@
+{
+  "annotations": {
+    "changelogDate": "20231222042712"
+  },
+  "applications": "*",
+  "entityTableName": "locations",
+  "fields": [
+    {
+      "fieldName": "locationId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "streetAddress",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "40"
+    },
+    {
+      "fieldName": "postalCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "12"
+    },
+    {
+      "fieldName": "city",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "stateProvince",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    }
+  ],
+  "name": "Locations",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "departments",
+      "otherEntityRelationshipName": "deptLocFk",
+      "relationshipName": "departments",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "options": {
+        "onDelete": "No Action"
+      },
+      "otherEntityField": "countryId",
+      "otherEntityName": "countries",
+      "relationshipName": "locCIdFk",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

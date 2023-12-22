@@ -1,0 +1,87 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-countries-heading" data-cy="CountriesCreateUpdateHeading" jhiTranslate="sanbox2App.countries.home.createOrEditLabel">
+        Create or edit a Countries
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="sanbox2App.countries.countryId" for="field_countryId">Country Id</label>
+          <input type="text" class="form-control" name="countryId" id="field_countryId" data-cy="countryId" formControlName="countryId" />
+          @if (editForm.get('countryId')!.invalid && (editForm.get('countryId')!.dirty || editForm.get('countryId')!.touched)) {
+            <div>
+              @if (editForm.get('countryId')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              @if (editForm.get('countryId')?.errors?.minlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 2 }"
+                  >This field is required to be at least 2 characters.</small
+                >
+              }
+              @if (editForm.get('countryId')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 2 }"
+                  >This field cannot be longer than 2 characters.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="sanbox2App.countries.countryName" for="field_countryName">Country Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="countryName"
+            id="field_countryName"
+            data-cy="countryName"
+            formControlName="countryName"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="sanbox2App.countries.countrRegFk" for="field_countrRegFk">Countr Reg Fk</label>
+          <select
+            class="form-control"
+            id="field_countrRegFk"
+            data-cy="countrRegFk"
+            name="countrRegFk"
+            formControlName="countrRegFk"
+            [compareWith]="compareRegion"
+          >
+            <option [ngValue]="null"></option>
+            @for (regionOption of regionsSharedCollection; track $index) {
+              <option [ngValue]="regionOption">{{ regionOption.regionId }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

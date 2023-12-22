@@ -1,0 +1,122 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-departments-heading"
+        data-cy="DepartmentsCreateUpdateHeading"
+        jhiTranslate="sanbox2App.departments.home.createOrEditLabel"
+      >
+        Create or edit a Departments
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="sanbox2App.departments.departmentId" for="field_departmentId">Department Id</label>
+          <input
+            type="number"
+            class="form-control"
+            name="departmentId"
+            id="field_departmentId"
+            data-cy="departmentId"
+            formControlName="departmentId"
+          />
+          @if (editForm.get('departmentId')!.invalid && (editForm.get('departmentId')!.dirty || editForm.get('departmentId')!.touched)) {
+            <div>
+              @if (editForm.get('departmentId')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('departmentId')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="sanbox2App.departments.departmentName" for="field_departmentName">Department Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="departmentName"
+            id="field_departmentName"
+            data-cy="departmentName"
+            formControlName="departmentName"
+          />
+          @if (
+            editForm.get('departmentName')!.invalid && (editForm.get('departmentName')!.dirty || editForm.get('departmentName')!.touched)
+          ) {
+            <div>
+              @if (editForm.get('departmentName')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 30 }"
+                  >This field cannot be longer than 30 characters.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="sanbox2App.departments.deptLocFk" for="field_deptLocFk">Dept Loc Fk</label>
+          <select
+            class="form-control"
+            id="field_deptLocFk"
+            data-cy="deptLocFk"
+            name="deptLocFk"
+            formControlName="deptLocFk"
+            [compareWith]="compareLocations"
+          >
+            <option [ngValue]="null"></option>
+            @for (locationsOption of locationsSharedCollection; track $index) {
+              <option [ngValue]="locationsOption">{{ locationsOption.locationId }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="sanbox2App.departments.depMgrFk" for="field_depMgrFk">Dep Mgr Fk</label>
+          <select
+            class="form-control"
+            id="field_depMgrFk"
+            data-cy="depMgrFk"
+            name="depMgrFk"
+            formControlName="depMgrFk"
+            [compareWith]="compareEmployees"
+          >
+            <option [ngValue]="null"></option>
+            @for (employeesOption of employeesSharedCollection; track $index) {
+              <option [ngValue]="employeesOption">{{ employeesOption.employeeId }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

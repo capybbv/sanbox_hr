@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (departments) {
+      <div>
+        <h2 data-cy="departmentsDetailsHeading"><span jhiTranslate="sanbox2App.departments.detail.title">Departments</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ departments.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.departments.departmentId">Department Id</span></dt>
+          <dd>
+            <span>{{ departments.departmentId }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.departments.departmentName">Department Name</span></dt>
+          <dd>
+            <span>{{ departments.departmentName }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.departments.deptLocFk">Dept Loc Fk</span></dt>
+          <dd>
+            @if (departments.deptLocFk) {
+              <div>
+                <a [routerLink]="['/locations', departments.deptLocFk.id, 'view']">{{ departments.deptLocFk.locationId }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.departments.depMgrFk">Dep Mgr Fk</span></dt>
+          <dd>
+            @if (departments.depMgrFk) {
+              <div>
+                <a [routerLink]="['/employees', departments.depMgrFk.id, 'view']">{{ departments.depMgrFk.employeeId }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/departments', departments.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

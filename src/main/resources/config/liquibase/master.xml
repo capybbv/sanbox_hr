@@ -17,7 +17,19 @@
     <property name="datetimeType" value="datetime" dbms="postgresql"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231222042512_added_entity_Region.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231222042612_added_entity_Countries.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231222042712_added_entity_Locations.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231222042812_added_entity_Jobs.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231222042912_added_entity_Departments.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231222043012_added_entity_Employees.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231222043112_added_entity_JobHistory.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20231222042612_added_entity_constraints_Countries.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231222042712_added_entity_constraints_Locations.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231222042912_added_entity_constraints_Departments.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231222043012_added_entity_constraints_Employees.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231222043112_added_entity_constraints_JobHistory.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

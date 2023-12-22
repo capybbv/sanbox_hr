@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (jobs) {
+      <div>
+        <h2 data-cy="jobsDetailsHeading"><span jhiTranslate="sanbox2App.jobs.detail.title">Jobs</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ jobs.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.jobs.jobId">Job Id</span></dt>
+          <dd>
+            <span>{{ jobs.jobId }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.jobs.jobTitle">Job Title</span></dt>
+          <dd>
+            <span>{{ jobs.jobTitle }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.jobs.minSalary">Min Salary</span></dt>
+          <dd>
+            <span>{{ jobs.minSalary }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.jobs.maxSalary">Max Salary</span></dt>
+          <dd>
+            <span>{{ jobs.maxSalary }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/jobs', jobs.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

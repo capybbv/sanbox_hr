@@ -1,0 +1,155 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-locations-heading" data-cy="LocationsCreateUpdateHeading" jhiTranslate="sanbox2App.locations.home.createOrEditLabel">
+        Create or edit a Locations
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="sanbox2App.locations.locationId" for="field_locationId">Location Id</label>
+          <input
+            type="number"
+            class="form-control"
+            name="locationId"
+            id="field_locationId"
+            data-cy="locationId"
+            formControlName="locationId"
+          />
+          @if (editForm.get('locationId')!.invalid && (editForm.get('locationId')!.dirty || editForm.get('locationId')!.touched)) {
+            <div>
+              @if (editForm.get('locationId')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('locationId')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="sanbox2App.locations.streetAddress" for="field_streetAddress">Street Address</label>
+          <input
+            type="text"
+            class="form-control"
+            name="streetAddress"
+            id="field_streetAddress"
+            data-cy="streetAddress"
+            formControlName="streetAddress"
+          />
+          @if (editForm.get('streetAddress')!.invalid && (editForm.get('streetAddress')!.dirty || editForm.get('streetAddress')!.touched)) {
+            <div>
+              @if (editForm.get('streetAddress')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 40 }"
+                  >This field cannot be longer than 40 characters.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="sanbox2App.locations.postalCode" for="field_postalCode">Postal Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="postalCode"
+            id="field_postalCode"
+            data-cy="postalCode"
+            formControlName="postalCode"
+          />
+          @if (editForm.get('postalCode')!.invalid && (editForm.get('postalCode')!.dirty || editForm.get('postalCode')!.touched)) {
+            <div>
+              @if (editForm.get('postalCode')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 12 }"
+                  >This field cannot be longer than 12 characters.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="sanbox2App.locations.city" for="field_city">City</label>
+          <input type="text" class="form-control" name="city" id="field_city" data-cy="city" formControlName="city" />
+          @if (editForm.get('city')!.invalid && (editForm.get('city')!.dirty || editForm.get('city')!.touched)) {
+            <div>
+              @if (editForm.get('city')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 30 }"
+                  >This field cannot be longer than 30 characters.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="sanbox2App.locations.stateProvince" for="field_stateProvince">State Province</label>
+          <input
+            type="text"
+            class="form-control"
+            name="stateProvince"
+            id="field_stateProvince"
+            data-cy="stateProvince"
+            formControlName="stateProvince"
+          />
+          @if (editForm.get('stateProvince')!.invalid && (editForm.get('stateProvince')!.dirty || editForm.get('stateProvince')!.touched)) {
+            <div>
+              @if (editForm.get('stateProvince')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 25 }"
+                  >This field cannot be longer than 25 characters.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="sanbox2App.locations.locCIdFk" for="field_locCIdFk">Loc C Id Fk</label>
+          <select
+            class="form-control"
+            id="field_locCIdFk"
+            data-cy="locCIdFk"
+            name="locCIdFk"
+            formControlName="locCIdFk"
+            [compareWith]="compareCountries"
+          >
+            <option [ngValue]="null"></option>
+            @for (countriesOption of countriesSharedCollection; track $index) {
+              <option [ngValue]="countriesOption">{{ countriesOption.countryId }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

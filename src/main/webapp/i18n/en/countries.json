@@ -1,0 +1,28 @@
+{
+  "sanbox2App": {
+    "countries": {
+      "home": {
+        "title": "Countries",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Countries",
+        "createOrEditLabel": "Create or edit a Countries",
+        "search": "Search for Countries",
+        "notFound": "No Countries found"
+      },
+      "created": "A new Countries is created with identifier {{ param }}",
+      "updated": "A Countries is updated with identifier {{ param }}",
+      "deleted": "A Countries is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Countries {{ id }}?"
+      },
+      "detail": {
+        "title": "Countries"
+      },
+      "id": "ID",
+      "countryId": "Country Id",
+      "countryName": "Country Name",
+      "locations": "Locations",
+      "countrRegFk": "Countr Reg Fk"
+    }
+  }
+}

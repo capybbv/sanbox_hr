@@ -1,0 +1,230 @@
+<div>
+  <h2 id="page-heading" data-cy="EmployeesHeading">
+    <span jhiTranslate="sanbox2App.employees.home.title">Employees</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="sanbox2App.employees.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-employees"
+        [routerLink]="['/employees/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhiTranslate="sanbox2App.employees.home.createLabel">Create a new Employees</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <form name="searchForm" class="row row-cols-sm-auto align-items-center">
+    <div class="col-sm-12">
+      <div class="input-group w-100 mt-3">
+        <label class="visually-hidden" for="currentSearch" jhiTranslate="sanbox2App.employees.home.search">Search for Employees</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="currentSearch"
+          id="currentSearch"
+          name="currentSearch"
+          placeholder="{{ 'sanbox2App.employees.home.search' | translate }}"
+        />
+
+        <button class="btn btn-info" (click)="search(currentSearch)">
+          <fa-icon icon="search"></fa-icon>
+        </button>
+
+        @if (currentSearch) {
+          <button class="btn btn-danger" (click)="search('')">
+            <fa-icon icon="trash-alt"></fa-icon>
+          </button>
+        }
+      </div>
+    </div>
+  </form>
+
+  @if (employees?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="sanbox2App.employees.home.notFound">No Employees found</span>
+    </div>
+  }
+
+  @if (employees && employees.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="employeeId">
+              <div class="d-flex">
+                <span jhiTranslate="sanbox2App.employees.employeeId">Employee Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="firstName">
+              <div class="d-flex">
+                <span jhiTranslate="sanbox2App.employees.firstName">First Name</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="lastName">
+              <div class="d-flex">
+                <span jhiTranslate="sanbox2App.employees.lastName">Last Name</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="email">
+              <div class="d-flex">
+                <span jhiTranslate="sanbox2App.employees.email">Email</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="phoneNumber">
+              <div class="d-flex">
+                <span jhiTranslate="sanbox2App.employees.phoneNumber">Phone Number</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hireDate">
+              <div class="d-flex">
+                <span jhiTranslate="sanbox2App.employees.hireDate">Hire Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="salary">
+              <div class="d-flex">
+                <span jhiTranslate="sanbox2App.employees.salary">Salary</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="commissionPct">
+              <div class="d-flex">
+                <span jhiTranslate="sanbox2App.employees.commissionPct">Commission Pct</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="empManagerFk.employeeId">
+              <div class="d-flex">
+                <span jhiTranslate="sanbox2App.employees.empManagerFk">Emp Manager Fk</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="empDeptFk.departmentId">
+              <div class="d-flex">
+                <span jhiTranslate="sanbox2App.employees.empDeptFk">Emp Dept Fk</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="empJobFk.jobId">
+              <div class="d-flex">
+                <span jhiTranslate="sanbox2App.employees.empJobFk">Emp Job Fk</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (employees of employees; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/employees', employees.id, 'view']">{{ employees.id }}</a>
+              </td>
+              <td>{{ employees.employeeId }}</td>
+              <td>{{ employees.firstName }}</td>
+              <td>{{ employees.lastName }}</td>
+              <td>{{ employees.email }}</td>
+              <td>{{ employees.phoneNumber }}</td>
+              <td>{{ employees.hireDate | formatMediumDatetime }}</td>
+              <td>{{ employees.salary }}</td>
+              <td>{{ employees.commissionPct }}</td>
+              <td>
+                @if (employees.empManagerFk) {
+                  <div>
+                    <a [routerLink]="['/employees', employees.empManagerFk.id, 'view']">{{ employees.empManagerFk.employeeId }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (employees.empDeptFk) {
+                  <div>
+                    <a [routerLink]="['/departments', employees.empDeptFk.id, 'view']">{{ employees.empDeptFk.departmentId }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (employees.empJobFk) {
+                  <div>
+                    <a [routerLink]="['/jobs', employees.empJobFk.id, 'view']">{{ employees.empJobFk.jobId }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/employees', employees.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/employees', employees.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(employees)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (employees && employees.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>
