@@ -1,0 +1,30 @@
+{
+  "sanbox2App": {
+    "jobs": {
+      "home": {
+        "title": "Jobs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Jobs",
+        "createOrEditLabel": "Create or edit a Jobs",
+        "search": "Search for Jobs",
+        "notFound": "No Jobs found"
+      },
+      "created": "A new Jobs is created with identifier {{ param }}",
+      "updated": "A Jobs is updated with identifier {{ param }}",
+      "deleted": "A Jobs is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Jobs {{ id }}?"
+      },
+      "detail": {
+        "title": "Jobs"
+      },
+      "id": "ID",
+      "jobId": "Job Id",
+      "jobTitle": "Job Title",
+      "minSalary": "Min Salary",
+      "maxSalary": "Max Salary",
+      "employees": "Employees",
+      "jobHistory": "Job History"
+    }
+  }
+}

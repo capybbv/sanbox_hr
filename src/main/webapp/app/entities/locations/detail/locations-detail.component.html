@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (locations) {
+      <div>
+        <h2 data-cy="locationsDetailsHeading"><span jhiTranslate="sanbox2App.locations.detail.title">Locations</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ locations.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.locations.locationId">Location Id</span></dt>
+          <dd>
+            <span>{{ locations.locationId }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.locations.streetAddress">Street Address</span></dt>
+          <dd>
+            <span>{{ locations.streetAddress }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.locations.postalCode">Postal Code</span></dt>
+          <dd>
+            <span>{{ locations.postalCode }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.locations.city">City</span></dt>
+          <dd>
+            <span>{{ locations.city }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.locations.stateProvince">State Province</span></dt>
+          <dd>
+            <span>{{ locations.stateProvince }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.locations.locCIdFk">Loc C Id Fk</span></dt>
+          <dd>
+            @if (locations.locCIdFk) {
+              <div>
+                <a [routerLink]="['/countries', locations.locCIdFk.id, 'view']">{{ locations.locCIdFk.countryId }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/locations', locations.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

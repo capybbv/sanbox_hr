@@ -1,0 +1,30 @@
+{
+  "sanbox2App": {
+    "jobs": {
+      "home": {
+        "title": "Jobs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Thêm mới một Jobs",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Jobs",
+        "search": "Tìm Jobs",
+        "notFound": "No Jobs found"
+      },
+      "created": "Một Jobs mới được tạo với định danh {{ param }}",
+      "updated": "Một Jobs cập nhật với định danh {{ param }}",
+      "deleted": "Một Jobs đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Jobs {{ id }}?"
+      },
+      "detail": {
+        "title": "Jobs"
+      },
+      "id": "ID",
+      "jobId": "Job Id",
+      "jobTitle": "Job Title",
+      "minSalary": "Min Salary",
+      "maxSalary": "Max Salary",
+      "employees": "Employees",
+      "jobHistory": "Job History"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "annotations": {
+    "changelogDate": "20231222042912"
+  },
+  "applications": "*",
+  "entityTableName": "departments",
+  "fields": [
+    {
+      "fieldName": "departmentId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "departmentName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    }
+  ],
+  "name": "Departments",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "employees",
+      "otherEntityRelationshipName": "empDeptFk",
+      "relationshipName": "employees",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "jobHistory",
+      "otherEntityRelationshipName": "jhistDepFk",
+      "relationshipName": "jobHistory",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "options": {
+        "onDelete": "No Action"
+      },
+      "otherEntityField": "locationId",
+      "otherEntityName": "locations",
+      "relationshipName": "deptLocFk",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "options": {
+        "onDelete": "No Action"
+      },
+      "otherEntityField": "employeeId",
+      "otherEntityName": "employees",
+      "relationshipName": "depMgrFk",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

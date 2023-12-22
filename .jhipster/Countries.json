@@ -1,0 +1,42 @@
+{
+  "annotations": {
+    "changelogDate": "20231222042612"
+  },
+  "applications": "*",
+  "entityTableName": "countries",
+  "fields": [
+    {
+      "fieldName": "countryId",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength", "required", "unique"],
+      "fieldValidateRulesMaxlength": "2",
+      "fieldValidateRulesMinlength": "2"
+    },
+    {
+      "fieldName": "countryName",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Countries",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "locations",
+      "otherEntityRelationshipName": "locCIdFk",
+      "relationshipName": "locations",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "options": {
+        "onDelete": "No Action"
+      },
+      "otherEntityField": "regionId",
+      "otherEntityName": "region",
+      "relationshipName": "countrRegFk",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

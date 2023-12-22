@@ -1,0 +1,31 @@
+{
+  "sanbox2App": {
+    "locations": {
+      "home": {
+        "title": "Locations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Locations",
+        "createOrEditLabel": "Create or edit a Locations",
+        "search": "Search for Locations",
+        "notFound": "No Locations found"
+      },
+      "created": "A new Locations is created with identifier {{ param }}",
+      "updated": "A Locations is updated with identifier {{ param }}",
+      "deleted": "A Locations is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Locations {{ id }}?"
+      },
+      "detail": {
+        "title": "Locations"
+      },
+      "id": "ID",
+      "locationId": "Location Id",
+      "streetAddress": "Street Address",
+      "postalCode": "Postal Code",
+      "city": "City",
+      "stateProvince": "State Province",
+      "departments": "Departments",
+      "locCIdFk": "Loc C Id Fk"
+    }
+  }
+}

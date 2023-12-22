@@ -1,0 +1,30 @@
+{
+  "sanbox2App": {
+    "departments": {
+      "home": {
+        "title": "Departments",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Thêm mới một Departments",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Departments",
+        "search": "Tìm Departments",
+        "notFound": "No Departments found"
+      },
+      "created": "Một Departments mới được tạo với định danh {{ param }}",
+      "updated": "Một Departments cập nhật với định danh {{ param }}",
+      "deleted": "Một Departments đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Departments {{ id }}?"
+      },
+      "detail": {
+        "title": "Departments"
+      },
+      "id": "ID",
+      "departmentId": "Department Id",
+      "departmentName": "Department Name",
+      "employees": "Employees",
+      "jobHistory": "Job History",
+      "deptLocFk": "Dept Loc Fk",
+      "depMgrFk": "Dep Mgr Fk"
+    }
+  }
+}

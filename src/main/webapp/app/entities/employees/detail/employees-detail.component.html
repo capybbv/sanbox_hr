@@ -1,0 +1,86 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (employees) {
+      <div>
+        <h2 data-cy="employeesDetailsHeading"><span jhiTranslate="sanbox2App.employees.detail.title">Employees</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ employees.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.employees.employeeId">Employee Id</span></dt>
+          <dd>
+            <span>{{ employees.employeeId }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.employees.firstName">First Name</span></dt>
+          <dd>
+            <span>{{ employees.firstName }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.employees.lastName">Last Name</span></dt>
+          <dd>
+            <span>{{ employees.lastName }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.employees.email">Email</span></dt>
+          <dd>
+            <span>{{ employees.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.employees.phoneNumber">Phone Number</span></dt>
+          <dd>
+            <span>{{ employees.phoneNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.employees.hireDate">Hire Date</span></dt>
+          <dd>
+            <span>{{ employees.hireDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.employees.salary">Salary</span></dt>
+          <dd>
+            <span>{{ employees.salary }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.employees.commissionPct">Commission Pct</span></dt>
+          <dd>
+            <span>{{ employees.commissionPct }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.employees.empManagerFk">Emp Manager Fk</span></dt>
+          <dd>
+            @if (employees.empManagerFk) {
+              <div>
+                <a [routerLink]="['/employees', employees.empManagerFk.id, 'view']">{{ employees.empManagerFk.employeeId }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.employees.empDeptFk">Emp Dept Fk</span></dt>
+          <dd>
+            @if (employees.empDeptFk) {
+              <div>
+                <a [routerLink]="['/departments', employees.empDeptFk.id, 'view']">{{ employees.empDeptFk.departmentId }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.employees.empJobFk">Emp Job Fk</span></dt>
+          <dd>
+            @if (employees.empJobFk) {
+              <div>
+                <a [routerLink]="['/jobs', employees.empJobFk.id, 'view']">{{ employees.empJobFk.jobId }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/employees', employees.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

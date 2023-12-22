@@ -1,0 +1,31 @@
+{
+  "sanbox2App": {
+    "locations": {
+      "home": {
+        "title": "Locations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Thêm mới một Locations",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Locations",
+        "search": "Tìm Locations",
+        "notFound": "No Locations found"
+      },
+      "created": "Một Locations mới được tạo với định danh {{ param }}",
+      "updated": "Một Locations cập nhật với định danh {{ param }}",
+      "deleted": "Một Locations đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Locations {{ id }}?"
+      },
+      "detail": {
+        "title": "Locations"
+      },
+      "id": "ID",
+      "locationId": "Location Id",
+      "streetAddress": "Street Address",
+      "postalCode": "Postal Code",
+      "city": "City",
+      "stateProvince": "State Province",
+      "departments": "Departments",
+      "locCIdFk": "Loc C Id Fk"
+    }
+  }
+}

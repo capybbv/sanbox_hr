@@ -48,6 +48,22 @@ public class CacheConfiguration {
             createCache(cm, org.ssandwih.domain.User.class.getName());
             createCache(cm, org.ssandwih.domain.Authority.class.getName());
             createCache(cm, org.ssandwih.domain.User.class.getName() + ".authorities");
+            createCache(cm, org.ssandwih.domain.Region.class.getName());
+            createCache(cm, org.ssandwih.domain.Region.class.getName() + ".countries");
+            createCache(cm, org.ssandwih.domain.Countries.class.getName());
+            createCache(cm, org.ssandwih.domain.Countries.class.getName() + ".locations");
+            createCache(cm, org.ssandwih.domain.Locations.class.getName());
+            createCache(cm, org.ssandwih.domain.Locations.class.getName() + ".departments");
+            createCache(cm, org.ssandwih.domain.Jobs.class.getName());
+            createCache(cm, org.ssandwih.domain.Jobs.class.getName() + ".employees");
+            createCache(cm, org.ssandwih.domain.Jobs.class.getName() + ".jobHistories");
+            createCache(cm, org.ssandwih.domain.Departments.class.getName());
+            createCache(cm, org.ssandwih.domain.Departments.class.getName() + ".employees");
+            createCache(cm, org.ssandwih.domain.Departments.class.getName() + ".jobHistories");
+            createCache(cm, org.ssandwih.domain.Employees.class.getName());
+            createCache(cm, org.ssandwih.domain.Employees.class.getName() + ".employees");
+            createCache(cm, org.ssandwih.domain.Employees.class.getName() + ".departments");
+            createCache(cm, org.ssandwih.domain.JobHistory.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

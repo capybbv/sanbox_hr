@@ -1,0 +1,101 @@
+{
+  "annotations": {
+    "changelogDate": "20231222043012"
+  },
+  "applications": "*",
+  "entityTableName": "employees",
+  "fields": [
+    {
+      "fieldName": "employeeId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "firstName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required", "unique"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "hireDate",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "salary",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "commissionPct",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Employees",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "employees",
+      "otherEntityRelationshipName": "empManagerFk",
+      "relationshipName": "employees",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "departments",
+      "otherEntityRelationshipName": "depMgrFk",
+      "relationshipName": "departments",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "options": {
+        "onDelete": "No Action"
+      },
+      "otherEntityField": "employeeId",
+      "otherEntityName": "employees",
+      "relationshipName": "empManagerFk",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "options": {
+        "onDelete": "No Action"
+      },
+      "otherEntityField": "departmentId",
+      "otherEntityName": "departments",
+      "relationshipName": "empDeptFk",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "options": {
+        "onDelete": "No Action"
+      },
+      "otherEntityField": "jobId",
+      "otherEntityName": "jobs",
+      "relationshipName": "empJobFk",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "elasticsearch",
+  "service": "serviceImpl"
+}

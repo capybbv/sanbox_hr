@@ -1,0 +1,30 @@
+{
+  "annotations": {
+    "changelogDate": "20231222042512"
+  },
+  "applications": "*",
+  "entityTableName": "region",
+  "fields": [
+    {
+      "fieldName": "regionId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "regionName",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Region",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "countries",
+      "otherEntityRelationshipName": "countrRegFk",
+      "relationshipName": "countries",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (countries) {
+      <div>
+        <h2 data-cy="countriesDetailsHeading"><span jhiTranslate="sanbox2App.countries.detail.title">Countries</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ countries.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.countries.countryId">Country Id</span></dt>
+          <dd>
+            <span>{{ countries.countryId }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.countries.countryName">Country Name</span></dt>
+          <dd>
+            <span>{{ countries.countryName }}</span>
+          </dd>
+          <dt><span jhiTranslate="sanbox2App.countries.countrRegFk">Countr Reg Fk</span></dt>
+          <dd>
+            @if (countries.countrRegFk) {
+              <div>
+                <a [routerLink]="['/region', countries.countrRegFk.id, 'view']">{{ countries.countrRegFk.regionId }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/countries', countries.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

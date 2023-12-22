@@ -1,0 +1,47 @@
+{
+  "annotations": {
+    "changelogDate": "20231222042812"
+  },
+  "applications": "*",
+  "entityTableName": "jobs",
+  "fields": [
+    {
+      "fieldName": "jobId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "jobTitle",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "35"
+    },
+    {
+      "fieldName": "minSalary",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "maxSalary",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Jobs",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "employees",
+      "otherEntityRelationshipName": "empJobFk",
+      "relationshipName": "employees",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "jobHistory",
+      "otherEntityRelationshipName": "jhistJob",
+      "relationshipName": "jobHistory",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}
